@@ -34,6 +34,7 @@
                           return  <li key={index}>{task}<button onClick={() => this.DeleteTask(index)}> Delete</button></li>
                         })}
                     </ul>
+                    
                     <h2>Tasks number: {this.state.numberOfTasks}</h2>
                     <input onChange={this.OnChangeHandler} value = {this.state.input} />
                    <button onClick ={this.AddTask} >Add task</button>     
@@ -49,13 +50,18 @@
 
             })
         }
+     
 
         AddTask = () => {
+            if(this.state.input === ''){
+               // Message for empty input
+            }
             
             this.setState(state => ({
                 tasks: [...this.state.tasks,state.input],
                 numberOfTasks: this.state.numberOfTasks + 1, 
-                input: ''
+                input: '',
+                
             }))
      
         }
@@ -71,10 +77,13 @@
             
            
         }
+
+        
     
     }
 
         ReactDOM.render(<Tasks/>,document.querySelector('#container'));
+      
     
     
     
