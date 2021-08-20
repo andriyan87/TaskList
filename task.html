@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <title>Tasks</title>
+</head>
+<body>
+    <div id="container"></div>
+    <script type="text/babel">
+    
+    class Tasks extends React.Component{
+
+        constructor(props) {
+            super(props);
+            this.state = {
+                tasks: [],
+                input: '',
+                numberOfTasks:0
+            }
+        }
+
+        render(){
+
+            return(
+                <div>
+                   <h1> Tasks </h1>
+                   <ul>
+                        {this.state.tasks.map((task,index) => {
+                          return  <li key={index}>{task}<button onClick={() => this.DeleteTask(index)}> Delete</button></li>
+                        })}
+                    </ul>
+                    <h2>Tasks number: {this.state.numberOfTasks}</h2>
+                    <input onChange={this.OnChangeHandler} value = {this.state.input} />
+                   <button onClick ={this.AddTask} >Add task</button>     
+                   
+                   
+                </div>);
+        };
+
+        OnChangeHandler = (event) => {
+            
+            this.setState({
+                input: event.target.value,
+
+            })
+        }
+
+        AddTask = () => {
+            
+            this.setState(state => ({
+                tasks: [...this.state.tasks,state.input],
+                numberOfTasks: this.state.numberOfTasks + 1, 
+                input: ''
+            }))
+     
+        }
+      
+
+        DeleteTask = (props) => {
+            this.state.tasks.splice(props, 1)
+            this.setState({tasks: this.state.tasks,
+            numberOfTasks: this.state.numberOfTasks - 1 })
+            
+            
+            console.log(this.state.tasks)
+            
+           
+        }
+    
+    }
+
+        ReactDOM.render(<Tasks/>,document.querySelector('#container'));
+    
+    
+    
+    </script>
+    
+</body>
+</html>
