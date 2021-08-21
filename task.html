@@ -7,14 +7,19 @@
     <script src="https://unpkg.com/react@17/umd/react.development.js"></script>
     <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
+
+    
+
     <title>Tasks</title>
 </head>
 <body>
     <div id="container"></div>
-    <script type="text/babel">
+    <script type="text/babel" >
     
     class Tasks extends React.Component{
-
+         
         constructor(props) {
             super(props);
             this.state = {
@@ -23,6 +28,7 @@
                 numberOfTasks:0
             }
         }
+        
 
         render(){
 
@@ -37,7 +43,7 @@
                     
                     <h2>Tasks number: {this.state.numberOfTasks}</h2>
                     <input onChange={this.OnChangeHandler} value = {this.state.input} />
-                   <button onClick ={this.AddTask} >Add task</button>     
+                   <button  className= "btn btn-primary" onClick ={this.AddTask} >Add task</button>     
                    
                    
                 </div>);
@@ -50,12 +56,11 @@
 
             })
         }
+       
      
 
         AddTask = () => {
-            if(this.state.input === ''){
-               // Message for empty input
-            }
+            
             
             this.setState(state => ({
                 tasks: [...this.state.tasks,state.input],
@@ -73,7 +78,7 @@
             numberOfTasks: this.state.numberOfTasks - 1 })
             
             
-            console.log(this.state.tasks)
+            
             
            
         }
